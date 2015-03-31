@@ -79,8 +79,8 @@ class UploadCatch  extends Upload{
                 return false;
             }
 
-            //移动文件
-            if (!(file_put_contents($this->filePath, $img) && file_exists($this->filePath))) { //移动失败
+            //移动文件 PS:
+            if (!file_put_contents($this->filePath, $img) || file_exists($this->filePath)) { //移动失败
                 $this->stateInfo = $this->getStateInfo("ERROR_WRITE_CONTENT");
                 return false;
             } else { //移动成功
